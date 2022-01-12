@@ -6,6 +6,7 @@ using namespace std;
 enum EventType { Football = 1, Movie = 2, Theater = 3, Concert = 4, ComedyClub = 5, Another = 6 };
 
 class Event {
+protected:
 	int eventId = 0;
 	char* eventName = nullptr;
 	float price = 0;
