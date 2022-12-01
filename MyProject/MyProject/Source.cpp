@@ -136,6 +136,19 @@ public:
 		return copy;
 	}
 
+	void setEventID(int newEventID) {
+		if (newEventID < 0) {
+			throw exception("No negative event id possible");
+		}
+		this->eventId = newEventID;
+		if(this->eventId == 0) {
+			cout << endl << "It's not possible to have an event with ID 0";
+		}
+		else {
+			cout << endl << "Your event is is: " << newEventID;
+		}
+	}
+
 };
 int Event::MIN_EVENT_LENGHT = 3;
 int Event::MAX_NO_TICKETS = 10000;
