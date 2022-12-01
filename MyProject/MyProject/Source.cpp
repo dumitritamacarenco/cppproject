@@ -4,8 +4,8 @@ using namespace std;
 
 class Location {
 	char* address = nullptr;
-	int noOfRows = 0;
 	string zone = "";
+	int noOfRows = 0;
 	int noOfSeats = 0;
 	bool isAvailable = false;
 public:
@@ -51,7 +51,7 @@ public:
 	}
 
 	void setNoOfRows(int newNoOfRows) {
-		if (newNoOfRows <= 0) {
+		if (newNoOfRows < 0) {
 			throw exception("It can't have  a negative number of rows");
 		}
 		this->noOfRows = newNoOfRows;
@@ -64,7 +64,7 @@ public:
 	}
 
 	void setNoOfSeats(int newNoOfSeats) {
-		if (newNoOfSeats <= 0) {
+		if (newNoOfSeats < 0) {
 			throw exception("The number of seats can't be a negative number");
 		}
 		this->noOfSeats = newNoOfSeats;
@@ -76,8 +76,21 @@ public:
 		}
 	}
 
+	Location() {
 
+	}
 
+	Location(const char* address, string zone) {
+		this->setAddress(address);
+		this->setZone(zone);
+	}
+
+	Location(const char* address, string zone, int noOfRows, int noOfSeats) {
+		this->setAddress(address);
+		this->setZone(zone);
+		this->setNoOfRows(noOfRows);
+		this->setNoOfSeats(noOfSeats);
+	}
 
 
 };
@@ -90,14 +103,39 @@ class Event {
 	int eventId = 0;
 	char* eventName = nullptr;
 	float price = 0;
-	float time = 0;
-	float durationTime = 0;
+	char time[150] = "";
+	char dateAndTime[150] = ""; // that is telling when the event takes place (date and time)
 	int* soldItemsEachEvent = nullptr;
 	int noEvents;
+	bool hasSponsor = false;
 	EventType type;
 public:
 	static int MIN_EVENT_LENGHT;
 	static int MAX_NO_TICKETS;
+
+	bool doesHaveSponsor() {
+		return this->hasSponsor;
+	}
+
+	int getEventID() {
+		return this->eventId;
+	}
+
+	float getPrice() {
+		return this->price;
+	}
+
+	int* getNoSoldItemsEachMonth() {
+		if (this->noEvents == 0) {
+			return nullptr;
+		}
+		int* copy = new int[this->noEvents];
+		for (int i = 0; i < this->noEvents; i++) {
+			copy[i] = this->soldItemsEachEvent[i];
+		}
+		return copy;
+	}
+
 };
 int Event::MIN_EVENT_LENGHT = 3;
 int Event::MAX_NO_TICKETS = 10000;
@@ -121,6 +159,8 @@ class Ticket {
 	float price = 0;
 	char* ticketDescription;
 	//const int codeBarNumber; not sure yet.
+	int* soldTicketsEachMonth = nullptr;
+	int noMonths = 0;
 	TicketType type;
 public:
 	static float MIN_PRICE;
