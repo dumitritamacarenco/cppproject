@@ -8,6 +8,7 @@ class Location {
 	int noOfRows = 0;
 	int noOfSeats = 0;
 	bool isAvailable = false;
+	// de adaugat 2 campuri care retin tara si orasul unde evenimentul are loc
 public:
 	static int MIN_NO_OF_SEATS;
 	static int ADDRESS_LENGHT;
@@ -148,6 +149,39 @@ public:
 			cout << endl << "Your event is is: " << newEventID;
 		}
 	}
+
+	void setEventName(const char* newEventName) {
+		if (strlen(newEventName) < Event::MIN_EVENT_LENGHT) {
+			throw exception("The event name has to have to at least 3 letters");
+		}
+		this->eventName = new char[strlen(newEventName) + 1];
+		strcpy_s(eventName, strlen(newEventName) + 1, newEventName);
+	}
+
+	void setPrice(float newPrice) {
+		if (newPrice <= 0) {
+			throw exception("The price can't be negative or 0");
+		}
+		this->price = newPrice;
+	}
+
+	void setTime(const char* newTime) {
+		int availableSpace = sizeof(this->time);
+		if (strlen(newTime) + 1 > availableSpace) {
+			throw exception("Time is too long");
+		}
+		strcpy_s(this->time, strlen(newTime) + 1, newTime);
+	}
+
+	void setDateAndTime(const char* newDateAndTime) {
+		int anotherAvailableSpace = sizeof(this->dateAndTime);
+		if (strlen(newDateAndTime) + 1 > anotherAvailableSpace) {
+			throw exception("Date and time are too long!");
+		}
+		strcpy_s(dateAndTime, strlen(newDateAndTime) + 1, newDateAndTime);
+	}
+
+
 
 };
 int Event::MIN_EVENT_LENGHT = 3;
