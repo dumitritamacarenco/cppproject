@@ -93,6 +93,12 @@ public:
 		this->setNoOfSeats(noOfSeats);
 	}
 
+	Location(const Location& copy) : isAvailable(copy.isAvailable) {
+		this->setAddress(copy.address);
+		this->setZone(copy.zone);
+		this->setNoOfRows(noOfRows);
+		this->setNoOfSeats(noOfSeats);
+	}
 
 };
 int Location::MIN_NO_OF_SEATS = 50;

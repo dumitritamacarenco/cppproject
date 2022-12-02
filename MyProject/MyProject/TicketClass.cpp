@@ -95,6 +95,16 @@ public:
 	}
 
 
+	Ticket(const Ticket& copy) : ticketID(ticketID), type(type) {
+		this->setPrice(copy.price);
+		this->setTicketDescription(copy.ticketDescription);
+		this->soldTicketsEachMonth = new int[copy.noMonths];
+		for (int i = 0; i < noMonths; i++) {
+			this->soldTicketsEachMonth[i] = copy.soldTicketsEachMonth[i];
+		}
+		this->noMonths = copy.noMonths;
+	}
+
 };
 float Ticket::MIN_PRICE = 50;
 int Ticket::NO_TICKETS_BOUGHT = 1;
