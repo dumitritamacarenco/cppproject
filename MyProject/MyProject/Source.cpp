@@ -181,6 +181,21 @@ public:
 		strcpy_s(dateAndTime, strlen(newDateAndTime) + 1, newDateAndTime);
 	}
 
+	void setData(const int* data, int noEvents) {
+		if (data == 0 || noEvents == 0) {
+			throw exception("No data found");
+		}
+		if (this->soldItemsEachEvent != nullptr) {
+			delete[] this->soldItemsEachEvent;
+		}
+		
+		this->soldItemsEachEvent = new int[noEvents];
+		for (int i = 0; i < noEvents; i++) {
+			this->soldItemsEachEvent[i] = data[i];
+		}
+		this->noEvents = noEvents;
+	}
+
 
 
 };
@@ -189,14 +204,73 @@ int Event::MAX_NO_TICKETS = 10000;
 
 
 class Person { // is the person that is buying a ticket for an event
-	string name = "";
+	char* name = nullptr;
 	int personID = 0;
 	bool has18 = false;
-	int* noTicketsBought = nullptr;
-	int noTickets = 0;
+	int* noTicketsBoughtEachMonth = nullptr;
+	int noMonths = 0;
 public:
 	static int MIN_NAME_LENGHT;
+
+	bool Has18() {
+		return this->has18;
+	}
+
+	char* getName() {
+		char* nameCopy = new char[strlen(this->name) + 1];
+		strcpy_s(nameCopy, strlen(this->name) + 1, this->name);
+		return nameCopy;
+	}
+
+	int getPersonID() {
+		return this->personID;
+	}
+
+	void setName(const char* newName) {
+		if (newName == nullptr && strlen(newName) < Person::MIN_NAME_LENGHT ) {
+			throw exception("The name can't be that short or null");
+		}
+		if (this->name != nullptr) {
+			delete[] this->name;
+		}
+		this->name = new char[strlen(newName) + 1];
+		strcpy_s(this->name, strlen(newName) + 1, newName);
+	}
+
+	void setPersonID(int newPersonID) {
+		if (newPersonID < 0) {
+			throw exception("The person can't have an id equal to 0 or a negative id!");
+		}
+		this->personID = newPersonID;
+		if (this->personID == 0) {
+			cout << endl << "It's not possible to have an ID equal to 0!";
+		}
+		else {
+			cout << endl << "Your person ID is: " << newPersonID;
+		}
+	}
+
+	void setDataForPerson(const int* data, int noMonths) {
+		if (data == nullptr || noMonths == 0) {
+			throw exception("No data available!");
+		}
+		if (this->noTicketsBoughtEachMonth != nullptr) {
+			delete[] this->noTicketsBoughtEachMonth;
+		}
+
+		this->noTicketsBoughtEachMonth = new int[noMonths];
+		for (int i = 0; i < noMonths; i++) {
+			this->noTicketsBoughtEachMonth[i] = data[i];
+		}
+		this->noMonths = noMonths;
+	}
+
+	Person() {
+
+	}
+
 };
+
 int Person::MIN_NAME_LENGHT = 3;
 
 enum TicketType{Regular = 1, VIP = 2, Family =3}; // by family i'm trying to say that the person will have a special seat. Ex: near the stage, or on the stage :)
@@ -212,6 +286,11 @@ class Ticket {
 public:
 	static float MIN_PRICE;
 	static int NO_TICKETS_BOUGHT;//bc a person can't buy 0 tickets
+
+	int getTicketID() {
+		return this->ticketID;
+	}
+
 };
 float Ticket::MIN_PRICE = 50;
 int Ticket::NO_TICKETS_BOUGHT = 1;
