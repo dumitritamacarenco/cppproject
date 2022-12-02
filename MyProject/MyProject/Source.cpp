@@ -293,13 +293,20 @@ public:
 	}
 
 	Person() {
-
+		cout << endl << "Calling the default constructor for Person class";
 	}
 
+
+	Person(const char* name, int personID, bool has18, int* data, int noMonths) :has18(has18) {
+		this->setName(name);
+		this->setPersonID(personID);
+		this->setDataForPerson(data, noMonths);
+	}
 
 	Person(const char* name) {
 		this->setName(name);
 	}
+
 };
 
 int Person::MIN_NAME_LENGHT = 3;
@@ -383,7 +390,17 @@ public:
 	}
 
 	Ticket() {
+		cout << endl << "Calling the default constructor for Ticket class";
+	}
 
+	Ticket(int ticketID):ticketID(ticketID), price(0), ticketDescription(nullptr), soldTicketsEachMonth(0), noMonths(0) {
+		cout << endl << "Nothing to display :)";
+	}
+
+	Ticket(int ticketID, float price, const char* ticketDescription, int* data, int noMonths, TicketType type):ticketID(ticketID), type(type){
+		this->setPrice(price);
+		this->setRecord(data, noMonths);
+		this->setTicketDescription(ticketDescription);
 	}
 
 
