@@ -114,6 +114,10 @@ public:
 	static int MIN_EVENT_LENGHT;
 	static int MAX_NO_TICKETS;
 
+	EventType getEventType() {
+		return this->type;
+	}
+
 	bool doesHaveSponsor() {
 		return this->hasSponsor;
 	}
@@ -196,8 +200,29 @@ public:
 		this->noEvents = noEvents;
 	}
 
-	Event() {
+	void setEventType(EventType type) {
+		this->type = type;
+	}
 
+	Event() {
+		this->eventId = 0;
+	}
+
+	Event(int eventID, const char* eventName, float price) {
+		this->eventId = 0;
+		this->setEventName(eventName);
+		this->price = 0;
+
+	}
+
+	Event(int eventID, const char* eventName, float price, const char* time, const char* dateAndTime, int* data, int noEvents, EventType type) {
+		this->setEventID(eventID);
+		this->setEventName(eventName);
+		this->setPrice(price);
+		this->setTime(time);
+		this->setDateAndTime(dateAndTime);
+		this->setData(data, noEvents);
+		this->setEventType(type);
 	}
 
 };
@@ -370,4 +395,6 @@ int Ticket::NO_TICKETS_BOUGHT = 1;
 int main() {
 	std::cout << std::endl << "Hello Dumitrita";
 	cout << endl << "Trying to update";
+
+	Event casaMare(1, "Casa mare la Bucuresti", 200);
 }
