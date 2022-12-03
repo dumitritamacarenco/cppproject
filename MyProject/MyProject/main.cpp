@@ -13,3 +13,9 @@
 //	Location Cluj("Strada Independentei", "1", 30, 5000);
 //	//Cluj.printInfo();
 //}
+
+#include <iostream>
+using namespace std;
+void main() {
+	std::cout << endl << "Idk";
+}

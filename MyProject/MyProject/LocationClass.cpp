@@ -93,12 +93,21 @@ public:
 		this->setNoOfSeats(noOfSeats);
 	}
 
-	//Location(const Location& copy) : isAvailable(copy.isAvailable) {
-	//	this->setAddress(copy.address);
-	//	this->setZone(copy.zone);
-	//	this->setNoOfRows(noOfRows);
-	//	this->setNoOfSeats(noOfSeats);
-	//}
+	Location(const Location& copy) : isAvailable(copy.isAvailable) {
+		this->setAddress(copy.address);
+		this->setZone(copy.zone);
+		this->setNoOfRows(noOfRows);
+		this->setNoOfSeats(noOfSeats);
+	}
+
+	Location& operator = (const Location& location) {
+		this->setAddress(location.address);
+		this->setZone(location.zone);
+		this->setNoOfRows(location.noOfRows);
+		this->setNoOfSeats(location.noOfSeats);
+		this->isAvailable= location.isAvailable;
+		return *this;
+	}
 
 };
 int Location::MIN_NO_OF_SEATS = 50;
