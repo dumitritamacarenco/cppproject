@@ -77,8 +77,8 @@ public:
 		}
 	}
 
-	Location() {
-
+	Location():address(nullptr), zone("nothing"), noOfRows(0), noOfSeats(0), isAvailable(false) {
+		cout << endl << "Calling the default constructor";
 	}
 
 	Location(const char* address, string zone) {

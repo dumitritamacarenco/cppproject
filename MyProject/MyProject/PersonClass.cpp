@@ -64,7 +64,7 @@ public:
 		this->noMonths = noMonths;
 	}
 
-	Person() {
+	Person():name(nullptr), personID(0), has18(false), noTicketsBoughtEachMonth(nullptr), noMonths(0) {
 		cout << endl << "Calling the default constructor for Person class";
 	}
 
@@ -79,15 +79,15 @@ public:
 		this->setName(name);
 	}
 
-	/*Person(const Person& copy) : has18(has18) {
+	Person(const Person& copy) : has18(has18) {
 		this->setName(copy.name);
 		this->setPersonID(copy.personID);
 		this->noTicketsBoughtEachMonth = new int[copy.noMonths];
-		for (int i = 0; i < noMonths; i++) {
+		for (int i = 0; i < copy.noMonths; i++) {
 			this->noTicketsBoughtEachMonth[i] = copy.noTicketsBoughtEachMonth[i];
 		}
 		this->noMonths = copy.noMonths;
-	}*/
+	}
 
 };
 

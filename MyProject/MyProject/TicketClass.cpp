@@ -80,13 +80,13 @@ public:
 		this->noMonths = noMonths;
 	}
 
-	/*Ticket() {
+	Ticket(): ticketID(0), price(0), ticketDescription(nullptr), soldTicketsEachMonth(nullptr), noMonths(0), type(Regular) {
 		cout << endl << "Calling the default constructor for Ticket class";
 	}
 
 	Ticket(int ticketID) :ticketID(ticketID), price(0), ticketDescription(nullptr), soldTicketsEachMonth(0), noMonths(0) {
 		cout << endl << "Nothing to display :)";
-	}*/
+	}
 
 	Ticket(int ticketID, float price, const char* ticketDescription, int* data, int noMonths, TicketType type) :ticketID(ticketID), type(type) {
 		this->setPrice(price);
@@ -95,15 +95,15 @@ public:
 	}
 
 
-	/*Ticket(const Ticket& copy) : ticketID(ticketID), type(type) {
+	Ticket(const Ticket& copy) : ticketID(ticketID), type(type) {
 		this->setPrice(copy.price);
 		this->setTicketDescription(copy.ticketDescription);
 		this->soldTicketsEachMonth = new int[copy.noMonths];
-		for (int i = 0; i < noMonths; i++) {
+		for (int i = 0; i < copy.noMonths; i++) {
 			this->soldTicketsEachMonth[i] = copy.soldTicketsEachMonth[i];
 		}
 		this->noMonths = copy.noMonths;
-	}*/
+	}
 
 };
 float Ticket::MIN_PRICE = 50;

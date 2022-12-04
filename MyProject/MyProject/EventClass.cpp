@@ -108,8 +108,8 @@ public:
 		this->type = type;
 	}
 
-	Event() {
-		this->eventId = 0;
+	Event():eventId(0), eventName(nullptr), price(0), time("0"), dateAndTime("0"), soldItemsEachEvent(nullptr), noEvents(0), hasSponsor(false), type(Another) {
+		cout << endl << "calling the default constructor for event class";
 	}
 
 	Event(int eventID, const char* eventName, float price) {
@@ -129,17 +129,17 @@ public:
 		this->setEventType(type);
 	}
 
-	////Event(const Event& copy) : eventName(copy.eventName), hasSponsor(hasSponsor){
-	////	this->setEventID(copy.eventId);
-	////	this->setPrice(copy.price);
-	////	this->setTime(copy.time);
-	////	this->setDateAndTime(copy.dateAndTime);
-	////	this->soldItemsEachEvent = new int[copy.noEvents];
-	////	/*for (int i = 0; i < noEvents; i++) {
-	////		this->soldItemsEachEvent[i] = copy.soldItemsEachEvent[i];
-	////	}
-	////	this->noEvents = copy.noEvents;*/
-	////}
+	Event(const Event& copy) : eventName(copy.eventName), hasSponsor(hasSponsor){
+		this->setEventID(copy.eventId);
+		this->setPrice(copy.price);
+		this->setTime(copy.time);
+		this->setDateAndTime(copy.dateAndTime);
+		this->soldItemsEachEvent = new int[copy.noEvents];
+		for (int i = 0; i < copy.noEvents; i++) {
+			this->soldItemsEachEvent[i] = copy.soldItemsEachEvent[i];
+		}
+		this->noEvents = copy.noEvents;
+	}
 
 };
 int Event::MIN_EVENT_LENGHT = 3;
