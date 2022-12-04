@@ -105,6 +105,18 @@ public:
 		this->noMonths = copy.noMonths;
 	}
 
+	Ticket operator=(const Ticket& ticket) {
+		cout << endl << "Calling the operator = for Ticket class";
+		if (this == &ticket) {
+			cout << endl << "Is the same object";
+		}
+		this->setPrice(ticket.price);
+		this->setTicketDescription(ticket.ticketDescription);
+		this->setRecord(ticket.soldTicketsEachMonth, ticket.noMonths);
+		this->type = ticket.type;
+		return *this;
+	}
+
 };
 float Ticket::MIN_PRICE = 50;
 int Ticket::NO_TICKETS_BOUGHT = 1;

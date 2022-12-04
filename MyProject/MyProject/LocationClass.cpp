@@ -101,6 +101,7 @@ public:
 	}
 
 	Location& operator = (const Location& location) {
+		cout << endl << "Calling the operator  = fot Location class";
 		this->setAddress(location.address);
 		this->setZone(location.zone);
 		this->setNoOfRows(location.noOfRows);

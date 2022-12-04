@@ -89,6 +89,18 @@ public:
 		this->noMonths = copy.noMonths;
 	}
 
+	Person& operator=(const Person& person) {
+		cout << endl << "Calling the = operator for Person class";
+		if (this == &person) {
+			cout << endl << "Is the same object";
+		}
+		this->setName(person.name);
+		this->setPersonID(person.personID);
+		this->has18 = person.has18;
+		this->setDataForPerson(person.noTicketsBoughtEachMonth, person.noMonths);
+		return *this;
+	}
+
 };
 
 int Person::MIN_NAME_LENGHT = 3;

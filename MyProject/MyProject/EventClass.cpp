@@ -141,6 +141,22 @@ public:
 		this->noEvents = copy.noEvents;
 	}
 
+	Event& operator=(const Event& event) {
+		cout << endl << "Calling the = operator for Event class";
+		if (this == &event) {
+			cout << endl << "Is the same object";
+		}
+		this->setEventID(event.eventId);
+		this->setEventName(event.eventName);
+		this->setPrice(event.price);
+		this->setTime(event.time);
+		this->setDateAndTime(event.dateAndTime);
+		this->setData(event.soldItemsEachEvent, event.noEvents);
+		this->hasSponsor = event.hasSponsor;
+		this->type = event.type;
+		return *this;
+	}
+
 };
 int Event::MIN_EVENT_LENGHT = 3;
 int Event::MAX_NO_TICKETS = 10000;

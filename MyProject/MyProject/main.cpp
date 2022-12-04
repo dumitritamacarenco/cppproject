@@ -15,7 +15,12 @@
 //}
 
 #include <iostream>
+#include <string>
+//#include "LocationClass.cpp"
+
 using namespace std;
 void main() {
 	std::cout << endl << "Idk";
+
+	//Location Bucuresti;
 }
