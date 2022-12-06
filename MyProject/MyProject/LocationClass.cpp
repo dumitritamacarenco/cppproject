@@ -117,6 +117,36 @@ public:
 		return *this;
 	}
 
+	/*char secondAddressChar = johnList[1];
+	johnList[1] = 'X';*/
+
+	char& operator[](int index) {
+		if (index < 0 || index >= strlen(this->address)) {
+			throw "Wrong index";
+		}
+		return this->address[index];
+	}
+
+	
+
+	//see if the location bucursti has more no of seats as location from cluj
+	/*if (bucuresti == cluj) {
+		cout << endl << "They have the same no of seats";
+	}*/
+	//pentru main
+	/*if (johnsticket <= 100) {
+		cout << enld << "Bucharest location has more  or equal seats than Cluj location";
+	}
+	else {
+		cout << endl << "Bucharest location has less seats than Cluj location";
+	}*/
+
+	bool operator>=(float value) {
+		return this->noOfSeats <= value;
+	}
+
+
+
 };
 int Location::MIN_NO_OF_SEATS = 50;
 int Location::ADDRESS_LENGHT = 3;

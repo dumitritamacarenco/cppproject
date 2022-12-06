@@ -23,4 +23,6 @@ void main() {
 	std::cout << endl << "Idk";
 
 	//Location Bucuresti;
+
+	//
 }

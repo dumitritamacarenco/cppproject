@@ -126,6 +126,30 @@ public:
 		return *this;
 	}
 
+	//pentru main
+	/*if (johnsticket <= 100) {
+		cout << enld << "John's ticket costs less or equal to 100";
+	}
+	else {
+		cout << endl << "John;s ticket was more than 100 lei";
+	}*/
+	
+	bool operator<=(float value) {
+		return this->price <= value;
+	}
+
+	//pentru main
+	/*if (johnsTicket == DumitritasTicket) {
+		cout << endl << "They have the same budget";
+	}*/
+
+	
+	
+
 };
 float Ticket::MIN_PRICE = 50;
 int Ticket::NO_TICKETS_BOUGHT = 1;
+
+bool operator==(Ticket& ticket1, Ticket& ticket2) {
+	return ticket1.getPrice() == ticket2.getPrice();
+}

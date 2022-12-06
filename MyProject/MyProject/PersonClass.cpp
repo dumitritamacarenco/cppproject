@@ -111,6 +111,33 @@ public:
 		return *this;
 	}
 
+
+	Person operator+(int value) {
+		Person result = *this;
+
+		int* newArray = new int[result.noMonths + 1];
+		for (int i = 0; i < result.noMonths; i++) {
+			newArray[i] = result.noTicketsBoughtEachMonth[i];
+		}
+		newArray[this->noMonths] = value;
+		
+		delete[] result.noTicketsBoughtEachMonth;
+		result.noTicketsBoughtEachMonth = newArray;
+
+		result.noMonths += 1;
+		 
+		return result;
+	}
+
+	//postincrementare
+	Person operator++(int) {
+		Person temp = *this;
+		for (int i = 0; i < this->noMonths; i++) {
+			this->noTicketsBoughtEachMonth[i]++;
+		}
+		return temp;
+	}
+
 };
 
 int Person::MIN_NAME_LENGHT = 3;

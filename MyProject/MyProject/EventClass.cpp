@@ -167,6 +167,19 @@ public:
 		return *this;
 	}
 
+	//try to see if the id is bigger of an event
+	bool operator>(Event e) {
+		return this->eventId > e.eventId;
+	}
+
+    //preincrementare
+	Event operator++() {
+		for (int i = 0; i < this->noEvents; i++) {
+			this->soldItemsEachEvent[i]++;
+		}
+		return *this;
+	}
+
 };
 int Event::MIN_EVENT_LENGHT = 3;
 int Event::MAX_NO_TICKETS = 10000;
