@@ -79,6 +79,16 @@ public:
 		this->setName(name);
 	}
 
+	//Person class destructor
+	~Person() {
+		if (this->name != nullptr) {
+			delete[] this->name;
+		}
+		if (this->noTicketsBoughtEachMonth != nullptr) {
+			delete[] this->noTicketsBoughtEachMonth;
+		}
+	}
+
 	Person(const Person& copy) : has18(has18) {
 		this->setName(copy.name);
 		this->setPersonID(copy.personID);

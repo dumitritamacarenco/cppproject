@@ -129,6 +129,16 @@ public:
 		this->setEventType(type);
 	}
 
+	//Event class destructor
+	~Event() {
+		if (this->eventName != nullptr) {
+			delete[] this->eventName;
+		}
+		if (this->soldItemsEachEvent != nullptr) {
+			delete[] this->soldItemsEachEvent;
+		}
+	}
+
 	Event(const Event& copy) : eventName(copy.eventName), hasSponsor(hasSponsor){
 		this->setEventID(copy.eventId);
 		this->setPrice(copy.price);

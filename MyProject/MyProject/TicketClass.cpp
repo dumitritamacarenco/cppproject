@@ -94,6 +94,15 @@ public:
 		this->setTicketDescription(ticketDescription);
 	}
 
+	~Ticket() {
+		if (this->ticketDescription != nullptr) {
+			delete[] this->ticketDescription;
+		}
+		if (this->soldTicketsEachMonth != nullptr) {
+			delete[] this->soldTicketsEachMonth;
+		}
+	}
+
 
 	Ticket(const Ticket& copy) : ticketID(ticketID), type(type) {
 		this->setPrice(copy.price);

@@ -8,7 +8,7 @@ class Location {
 	int noOfRows = 0;
 	int noOfSeats = 0;
 	bool isAvailable = false;
-	// de adaugat 2 campuri care retin tara si orasul unde evenimentul are loc
+
 public:
 	static int MIN_NO_OF_SEATS;
 	static int ADDRESS_LENGHT;
@@ -91,6 +91,13 @@ public:
 		this->setZone(zone);
 		this->setNoOfRows(noOfRows);
 		this->setNoOfSeats(noOfSeats);
+	}
+
+	//Location class destructor
+	~Location() {
+		if (this->address != nullptr) {
+			delete[] this->address;
+		}
 	}
 
 	Location(const Location& copy) : isAvailable(copy.isAvailable) {

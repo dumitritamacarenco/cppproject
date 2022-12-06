@@ -30,7 +30,13 @@ class Taxi
 	/*
 		Requirement 1. Set the default values for the class attributes. For lastDestination use "*" and for type use OTHER
 		CHange existing values if necessary
+		
 	*/
+
+	Taxi() : taxiId(0), lastDestination("*"), noRides(0), kmPerRide(0), pricePerKm(0), type(OTHER) {
+		cout << endl << "Calling the default constructor";
+	}
+
 
 	//leave the class public - needed for tests
 public:
@@ -49,7 +55,7 @@ public:
 	this will initialize lastDestination with "Unknown", pricePerKm with 2.5, type with CLASSIC and the taxiId with -1
 
 	*/
-	Taxi() :taxiId(-1)
+	Taxi() :taxiId(-1), lastDestination("Unknown"), noRides(0), kmPerRide(0), pricePerKm(2.5), type(CLASSIC)
 	{
 
 	}
@@ -64,6 +70,8 @@ public:
 
 	Taxi(int id, TaxiType type, double price) :taxiId(0)
 	{
+		//this->taxiId = id;
+
 	}
 
 	/*
