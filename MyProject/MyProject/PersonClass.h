@@ -171,8 +171,6 @@ ostream& operator<<(ostream& out, const Person& p) {
 	{
 		out << "Number of ticketa for the " << i+1 << " month " << p.noTicketsBoughtEachMonth[i] << " tickets " << endl;
 	}
-	
-
 	return out;
 }
 

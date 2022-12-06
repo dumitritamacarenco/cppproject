@@ -142,6 +142,7 @@ public:
 		return this->noOfSeats >= value;
 	}
 
+
 	friend ostream& operator<<(ostream& out, const Location& location);
 	friend istream& operator>>(istream& in, Location& location);
 };

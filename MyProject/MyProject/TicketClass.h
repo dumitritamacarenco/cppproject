@@ -162,8 +162,6 @@ public:
 	friend istream& operator>>(istream& in, Ticket& t);
 
 
-
-
 };
 float Ticket::MIN_PRICE = 50;
 int Ticket::NO_TICKETS_BOUGHT = 1;

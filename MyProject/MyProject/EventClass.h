@@ -76,11 +76,6 @@ public:
 	}
 
 
-
-
-
-	// getters
-
 	EventType getEventType() {
 		return this->type;
 	}
