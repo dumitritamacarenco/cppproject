@@ -149,6 +149,14 @@ public:
 		return this->price <= value;
 	}
 
+	float applyDiscount(float discount)
+	{ 
+		float finalPrice = 0;
+		cout << "Final price with the applied discount for the ticket : "; 
+	    finalPrice+= this->price - (this->price*discount / 100);
+	  return finalPrice;
+
+	}
 
 	friend ostream& operator<<(ostream& out, Ticket& t);
 	friend istream& operator>>(istream& in, Ticket& t);

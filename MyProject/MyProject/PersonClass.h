@@ -180,13 +180,16 @@ ostream& operator<<(ostream& out, const Person& p) {
 istream& operator>>(istream& in, Person& p) {
 	cout << " Introduce person ID: ";
 	in >> p.personID;
-
 	char buffer[100];
-	in >> buffer;
+	/*in >> buffer;
 	if (p.name != nullptr)
 	{
 		delete[] p.name;
-	}
+	}*/
+	in.ignore();
+	in.getline(buffer, 100);
+	in.clear();
+	delete[] p.name;
 	p.name = new char[strlen(buffer) + 1];
 	strcpy_s(p.name, strlen(buffer) + 1, buffer);
 
