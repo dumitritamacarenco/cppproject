@@ -4,6 +4,7 @@
 using namespace std;
 
 class Location {
+protected:
 	char* address = nullptr;
 	string zone = "";
 	int noOfRows = 0;
