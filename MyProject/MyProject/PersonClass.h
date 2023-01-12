@@ -4,6 +4,7 @@
 using namespace std;
 
 class Person { // is the person that is buying a ticket for an event
+protected:
 	char* name = nullptr;
 	int personID = 0;
 	bool has18 = false;
