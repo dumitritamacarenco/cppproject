@@ -202,3 +202,12 @@ istream& operator>>(istream& in, Person& p) {
 	}
 	return in;
 }
+
+class Adult : public Person {
+protected:
+	int cnp = 0;
+public:
+	Adult(char* name, int cnp) :Person(name) {
+		this->cnp = cnp;
+	}
+};
