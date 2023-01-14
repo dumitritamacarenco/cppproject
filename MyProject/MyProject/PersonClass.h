@@ -206,8 +206,72 @@ istream& operator>>(istream& in, Person& p) {
 class Adult : public Person {
 protected:
 	int cnp = 0;
+	int height = 0;
 public:
-	Adult(char* name, int cnp) :Person(name) {
+	Adult(char* name, int cnp, int height) :Person(name) {
+		this->cnp = cnp;
+		this->height = height;
+	}
+
+	Adult(const char* name, int personID, bool has18, int* data, int noMonths, int cnp, int height):Person(name, personID, has18, data, noMonths) {
+		this->cnp = cnp;
+		this->height = height;
+	}
+
+	Adult(const Adult& a):Person(a), cnp(0), height(0) {
+		this->cnp = a.cnp;
+		this->height = a.height;
+	}
+
+	Adult& operator=(const Adult& a) {
+		if (this != &a) {
+			Person::operator=(a);
+			this->cnp = a.cnp;
+			this->height = a.height;
+		}
+		return *this;
+	}
+
+	int getCnp() {
+		return this->cnp;
+	}
+
+	int getHeight() {
+		return this->height;
+	}
+
+	void setCnp(int cnp) {
+		if (this->cnp < 13) {
+			cout << endl << "The cnp has 13 numbers!";
+		}
 		this->cnp = cnp;
 	}
+
+	void setHeight(int height) {
+		if (this->height < 50) {
+			cout << endl << "It mus be a kid!";
+		}
+		this->height = height;
+	}
+
+	friend ostream& operator<<(ostream& out, const Adult& a);
+	friend istream& operator>>(istream& in, Adult& a);
 };
+
+ostream& operator<<(ostream& out, const Adult& a) {
+	out << endl << (Person)a << endl;
+	out << "Cnp for the adult: " << a.cnp << endl;
+	out << "Height for the adult: " << a.height << "cm" << endl;
+	return out;
+}
+
+istream& operator>>(istream& in, Adult& a) {
+	in >> (Person&)a;
+	cout << endl;
+	cout << "CNP for the adult: ";
+	in >> a.cnp;
+	cout << "Height for the adult: ";
+	in >> a.height;
+	cout << "cm" << endl;
+	return in;
+}
