@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 class Person { // is the person that is buying a ticket for an event
@@ -275,3 +276,24 @@ istream& operator>>(istream& in, Adult& a) {
 	cout << "cm" << endl;
 	return in;
 }
+
+class AdultSTL {
+private:
+	vector <Person>Adult;
+public:
+	AdultSTL(vector<Person>Adult) :Adult() {
+		for (const Person& p : Adult) {
+			this->Adult.push_back(p);
+		}
+	}
+	AdultSTL& operator+=(const Person& p) {
+		this->Adult.push_back(p);
+		return *this;
+	}
+	friend ostream& operator<<(ostream& out, const AdultSTL& a) {
+		for (const Person& p : a.Adult) {
+			out << p;
+		}
+		return out;
+	}
+};
