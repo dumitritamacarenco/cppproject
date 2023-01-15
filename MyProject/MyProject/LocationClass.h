@@ -185,3 +185,21 @@ istream& operator>>(istream& in, Location& location) {
 
 	return in;
 }
+
+class City : public Location {
+protected:
+	int longitude = 0;
+	int latitude = 0;
+public:
+	City(char* address, string zone, int longitude, int latitude) : Location(address, zone) {
+		this->longitude = longitude;
+		this->latitude = latitude;
+	}
+
+	City(char* address, string zone, int noOfRows, int noOfSeats, bool isAvailable) : Location(address, zone, noOfRows, noOfSeats, isAvailable) {
+		this->longitude = longitude;
+		this->latitude = latitude;
+	}
+
+
+};
