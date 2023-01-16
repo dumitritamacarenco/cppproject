@@ -160,6 +160,24 @@ void main() {
 	Dumitrita = Adrian;
 	
 	
-	
+	cout << endl << "-------------------------------------------------------------------------";
+	cout << endl << " ADULT CLASS";
+	cout << endl << "-------------------------------------------------------------------------";
+	cout << endl;
+
+	int numbers[] = { 2,3 };
+	int noNumbers = 2;
+
+	Adult Mihai("Mihai", 2, 1, numbers, noNumbers, 501983400238, 40);
+	cout << endl;
+	cout << Mihai;
+
+	cout << endl; 
+
+	cout << "=============Virtual methods ====================="; 
+	Person* person = new Adult(Mihai);
+	person->addAnotherCNP(508787);
+	cout << endl;
+	person->checkHeight(34);
 
 }

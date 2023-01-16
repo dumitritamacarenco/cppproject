@@ -4,7 +4,17 @@
 #include <vector>
 using namespace std;
 
-class Person { // is the person that is buying a ticket for an event
+class I_Person
+{
+public:
+	virtual ~I_Person() = default;
+	virtual void getDescription() = 0;
+	virtual int addAnotherCNP(int anotherCnp) = 0;
+	virtual int checkHeight(int height) = 0;
+};
+
+class Person  
+{ // is the person that is buying a ticket for an event
 protected:
 	char* name = nullptr;
 	int personID = 0;
@@ -40,13 +50,13 @@ public:
 	}
 
 	void setPersonID(int newPersonID) {
-		if (newPersonID < 0) {
+		/*if (newPersonID < 0) {
 			throw exception("The person can't have an id equal to 0 or a negative id!");
-		}
+		}*/
 		this->personID = newPersonID;
-		if (this->personID == 0) {
+		/*if (this->personID == 0) {
 			cout << endl << "It's not possible to have an ID equal to 0!";
-		}
+		}*/
 		/*else {
 			cout << endl << "Your person ID is: " << newPersonID;
 		}*/
@@ -157,6 +167,23 @@ public:
 			delete[] this->noTicketsBoughtEachMonth;
 		}
 	}
+
+	//2 generic methods
+	//virtual string getDescription() = 0; //virtual pure method 
+
+	virtual int addAnotherCNP(int anotherCnp) {
+		cout << endl << "The adult can have a another cnp: " << anotherCnp; // maybe the adult has 2 citizenships => he can have 2 cnps
+		return anotherCnp;
+	}
+
+	virtual int checkHeight(int height) {
+		if (height < 50) {
+			cout << endl << "The Adult is actually a kid!";
+		}
+		return 0;
+	}
+
+
 	friend ostream& operator<<(ostream& out, const Person& p);
 	friend istream& operator>>(istream& in, Person& p);
 };
@@ -171,7 +198,7 @@ ostream& operator<<(ostream& out, const Person& p) {
 	out << "The number of months: " << p.noMonths << endl;
 	for (int i = 0; i < p.noMonths; i++)
 	{
-		out << "Number of ticketa for the " << i+1 << " month " << p.noTicketsBoughtEachMonth[i] << " tickets " << endl;
+		out << "Number of tickets for the " << i+1 << " month " << p.noTicketsBoughtEachMonth[i] << " tickets " << endl;
 	}
 	return out;
 }
@@ -206,15 +233,19 @@ istream& operator>>(istream& in, Person& p) {
 
 class Adult : public Person {
 protected:
-	int cnp = 0;
+	long long cnp = 0;
 	int height = 0;
 public:
-	Adult(char* name, int cnp, int height) :Person(name) {
+	Adult() : Person(), cnp(0), height(0) {
+		cout << endl << "Calling the default constructor";
+	}
+
+	Adult(const char* name, int cnp, int height) :Person(name), cnp(0), height(0) {
 		this->cnp = cnp;
 		this->height = height;
 	}
 
-	Adult(const char* name, int personID, bool has18, int* data, int noMonths, int cnp, int height):Person(name, personID, has18, data, noMonths) {
+	Adult(const char* name, int personID, bool has18, int* data, int noMonths, long long cnp, int height):Person(name, personID, has18, data, noMonths), cnp(0), height(0) {
 		this->cnp = cnp;
 		this->height = height;
 	}
@@ -241,7 +272,7 @@ public:
 		return this->height;
 	}
 
-	void setCnp(int cnp) {
+	void setCnp(long long cnp) {
 		if (this->cnp < 13) {
 			cout << endl << "The cnp has 13 numbers!";
 		}
@@ -250,17 +281,34 @@ public:
 
 	void setHeight(int height) {
 		if (this->height < 50) {
-			cout << endl << "It mus be a kid!";
+			cout << endl << "It must be a kid!";
 		}
 		this->height = height;
 	}
 
 	friend ostream& operator<<(ostream& out, const Adult& a);
 	friend istream& operator>>(istream& in, Adult& a);
+
+	//void getDescription() override {
+	//	cout << endl << "Adult description";
+	//	
+	//}
+
+	int addAnotherCNP(int anotherCnp) override{
+		cout << endl << "The adult can have a another cnp: " << anotherCnp; // maybe the adult has 2 citizenships => he can have 2 cnps
+		return anotherCnp;
+	}
+
+	int checkHeight(int height) override {
+		if (height < 50) {
+			cout << endl << "The Adult is actually a kid!";
+		}
+		return 0;
+	}
 };
 
 ostream& operator<<(ostream& out, const Adult& a) {
-	out << endl << (Person)a << endl;
+	out << endl << (Person&)a << endl;
 	out << "Cnp for the adult: " << a.cnp << endl;
 	out << "Height for the adult: " << a.height << "cm" << endl;
 	return out;
@@ -277,23 +325,23 @@ istream& operator>>(istream& in, Adult& a) {
 	return in;
 }
 
-class AdultSTL {
-private:
-	vector <Person>Adult;
-public:
-	AdultSTL(vector<Person>Adult) :Adult() {
-		for (const Person& p : Adult) {
-			this->Adult.push_back(p);
-		}
-	}
-	AdultSTL& operator+=(const Person& p) {
-		this->Adult.push_back(p);
-		return *this;
-	}
-	friend ostream& operator<<(ostream& out, const AdultSTL& a) {
-		for (const Person& p : a.Adult) {
-			out << p;
-		}
-		return out;
-	}
-};
+//class AdultSTL {
+//private:
+//	vector <Person>Adult;
+//public:
+//	AdultSTL(vector<Person>Adult) :Adult() {
+//		for (const Person& p : Adult) {
+//			this->Adult.push_back(p);
+//		}
+//	}
+//	AdultSTL& operator+=(const Person& p) {
+//		this->Adult.push_back(p);
+//		return *this;
+//	}
+//	friend ostream& operator<<(ostream& out, const AdultSTL& a) {
+//		for (const Person& p : a.Adult) {
+//			out << p;
+//		}
+//		return out;
+//	}
+//};
