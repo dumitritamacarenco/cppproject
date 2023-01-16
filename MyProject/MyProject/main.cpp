@@ -179,5 +179,4 @@ void main() {
 	person->addAnotherCNP(508787);
 	cout << endl;
 	person->checkHeight(34);
-
 }
